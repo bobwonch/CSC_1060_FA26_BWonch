@@ -1,4 +1,9 @@
-
+/**
+ * @author S01881046
+ * @version 1.0
+ * 
+ * Notes for the second chapter of Think Java.
+ */
 public class Driver {
 
 	public static void main(String[] args) throws InterruptedException {
