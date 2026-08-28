@@ -12,6 +12,8 @@ public class Driver {
 		int x = 10;
 		float real = 9.9f;
 		double y = 99.9; 
+
+		String change = "I Changed it!";
 		
 		message = "Hello World!";
 		letter = 'c';
