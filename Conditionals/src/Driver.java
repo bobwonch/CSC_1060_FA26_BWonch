@@ -98,7 +98,11 @@ public class Driver {
 		num = input.nextInt();
 		
 		if(num > 0 || num % 2 == 0)
+		{
 			System.out.println("You did it!");
+			System.out.println();
+			System.out.println();
+		}
 		else
 			System.out.println("Wow, you suck...");	
 		
