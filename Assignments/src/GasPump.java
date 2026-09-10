@@ -44,7 +44,7 @@ public class GasPump {
 		System.out.printf(WALL);
 		System.out.printf(WALL);
 		
-		System.out.printf("*%48s %28s", "Enter your phone number", "*\n");
+		System.out.printf("*%49s %27s", "Enter your phone number", "*\n");
 		
 		System.out.printf(WALL);
 		System.out.printf(WALL);
@@ -97,7 +97,7 @@ public class GasPump {
 		System.out.println(PAGE);
 		
 	//Output
-		grade = "Premium";
+		//grade = "Premium";
 		System.out.println(LINE);
 		System.out.printf(WALL);
 		System.out.printf(WALL);
