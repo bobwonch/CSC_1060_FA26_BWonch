@@ -5,6 +5,11 @@ public class Sand {
 		// TODO Auto-generated method stub
 		printThreeTimes("World");
 		System.out.println(add(2,3));
+		String word = "banana";
+		for(char letter : word.toCharArray())
+		{
+			System.out.println(letter);
+		}
 		
 
 	}
