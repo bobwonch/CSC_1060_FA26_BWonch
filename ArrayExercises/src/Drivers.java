@@ -3,9 +3,9 @@ import java.util.Random;
 public class Drivers {
 
 	public static void main(String[] args) {
-		int[] arr = new int[111];
+		int[] arr = new int[10];
 		fillArray(arr);
-		printArray(arr);
+		//printArray(arr);
 		
 		int max = findMax(arr);
 		int min = findMin(arr);
@@ -14,11 +14,17 @@ public class Drivers {
 		int med = findMedian(arr);
 		
 		System.out.println();
-		printArray(arr);
+		//printArray(arr);
 		System.out.println();
 		
-		reverseArray(arr);
+		int[] revArr = reverseArray2(arr);
+		
+		//reverseArray(arr);
+		
+		
 		printArray(arr);
+		System.out.println();
+		printArray(revArr);
 		System.out.println("\n" + med + "\n" + max + "\n" + min);
 
 	}
@@ -30,6 +36,14 @@ public class Drivers {
 		
 	}
 
+	private static int[] reverseArray2(int[] arr) {
+		int[] ret = new int[arr.length];
+		for (int i = 0; i < arr.length; i++) {
+			ret[arr.length - 1 - i] = arr[i];
+		}
+		return ret;
+	}
+	
 	private static int findMedian(int[] arr) {
 		if(arr.length % 2 == 0)
 		{
