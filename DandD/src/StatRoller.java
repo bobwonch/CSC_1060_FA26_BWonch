@@ -31,11 +31,10 @@ public class StatRoller {
 	}
 
 	private int rollStat() {
-		Random rand = new Random();
 		int sum = 0;
 		int low = 6;
 		for (int i = 0; i < 4; i++) {
-			int num = rand.nextInt(6) + 1;
+			int num = Dice.roll6(1);
 			if(num < low)low = num;
 			sum += num;
 		}
@@ -75,7 +74,7 @@ public class StatRoller {
 
 	@Override
 	public String toString() {
-		return "StatRoller: \nStrength: " + strength + 	" + " + bonuses[0] 
+		return "Strength: " + strength + 	" + " + bonuses[0] 
 				+ "\nDexterity: " +	dexterity + " + " + bonuses[1] 
 				+ "\nConstitution: " + constitution + " + " + bonuses[2] 
 				+ "\nintelligence:"	+ intelligence + " + " + bonuses[3] 
