@@ -7,7 +7,7 @@ public class Character {
 	private int hp;
 	private String race;
 	private String note;
-	private StatRoller stats;
+	private Attributes stats;
 	
 	public Character() {
 		this.name = "";
@@ -17,10 +17,10 @@ public class Character {
 		this.hp = 0;
 		this.race = "";
 		this.note = "";
-		this.stats = new StatRoller();
+		this.stats = StatRoller.rollStats();
 	}
 
-	public Character(String name, int level, String archetype, int ac, int hp, String race, String note, StatRoller stats) {
+	public Character(String name, int level, String archetype, int ac, int hp, String race, String note, Attributes stats) {
 		this.name = name;
 		this.level = level;
 		this.archetype = archetype;
@@ -31,7 +31,7 @@ public class Character {
 		this.stats = stats;
 	}
 
-	public StatRoller getStats()
+	public Attributes getStats()
 	{
 		return stats;
 	}
