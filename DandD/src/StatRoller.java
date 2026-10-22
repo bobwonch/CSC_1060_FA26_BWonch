@@ -1,7 +1,7 @@
 
 public class StatRoller {
 
-	public static Attributes rollStats()
+	public static Attributes rollStats(Race race)
 	{
 		int strength = rollStat();
 		int dexterity = rollStat();
@@ -11,7 +11,7 @@ public class StatRoller {
 		int charisma = rollStat();
 		
 		return new Attributes(strength, dexterity, 
-				constitution,intelligence, wisdom, charisma);
+				constitution,intelligence, wisdom, charisma, race);
 	}
 	private static int rollStat() {
 		int sum = 0;
@@ -22,5 +22,31 @@ public class StatRoller {
 			sum += num;
 		}
 		return sum - low;
+	}
+	public static Race suggestRace(int str, int dex, int con, int intel,
+			int wis, int cha) {
+		int highest = str;
+		Race recommended = Race.HUMAN;
+		if(dex > highest)
+		{
+			highest = dex;
+			recommended = Race.ELF;
+		}
+		if(con > highest)
+		{
+			highest = con;
+			recommended = Race.DWARF;
+		}
+		if(intel > highest)
+		{
+			highest = intel;
+			recommended =Race.ELF;
+		}
+		if(wis > highest || cha > highest)
+		{
+			recommended = Race.HUMAN;
+		}
+		
+		return recommended;
 	}
 }

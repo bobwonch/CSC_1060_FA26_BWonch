@@ -2,25 +2,28 @@
 public class Character {
 	private String name;
 	private int level;
-	private String archetype;
+	private Archetype archetype;
 	private int ac;
 	private int hp;
-	private String race;
+	private Race race;
 	private String note;
 	private Attributes stats;
 	
-	public Character() {
-		this.name = "";
-		this.level = 1;
-		this.archetype = "";
-		this.ac = 0;
-		this.hp = 0;
-		this.race = "";
-		this.note = "";
-		this.stats = StatRoller.rollStats();
-	}
 
-	public Character(String name, int level, String archetype, int ac, int hp, String race, String note, Attributes stats) {
+	public Character(String name, Archetype archetype, Race race, String note) {
+		this.name = name;
+		this.level = 1;
+		this.archetype = archetype;
+		this.race = race;
+		this.note = note;
+		this.stats = StatRoller.rollStats(race);
+		
+		this.ac = 10 + this.stats.getBonus(1);
+		this.hp = archetype.getHitDie() + this.stats.getBonus(2);
+	}
+	
+	public Character(String name, int level, Archetype archetype, int ac, int hp, Race race, String note,
+			Attributes stats) {
 		this.name = name;
 		this.level = level;
 		this.archetype = archetype;
@@ -31,53 +34,23 @@ public class Character {
 		this.stats = stats;
 	}
 
-	public Attributes getStats()
-	{
-		return stats;
-	}
-
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public int getLevel() {
-		return level;
-	}
-	public void setLevel(int level) {
-		this.level = level;
-	}
-	public String getArchetype() {
-		return archetype;
-	}
-	public void setArchetype(String archetype) {
-		this.archetype = archetype;
-	}
-	public int getAc() {
-		return ac;
-	}
-	public void setAc(int ac) {
-		this.ac = ac;
-	}
-	public int getHp() {
-		return hp;
-	}
-	public void setHp(int hp) {
-		this.hp = hp;
-	}
-	public String getRace() {
-		return race;
-	}
-	public void setRace(String race) {
-		this.race = race;
-	}
-	public String getNote() {
-		return note;
-	}
-	public void setNote(String note) {
-		this.note = note;
-	}
+	
+	
+	public Attributes getStats(){return stats;}
+	public String getName() {return name;}
+	public void setName(String name) {this.name = name;}
+	public int getLevel() {	return level;}
+	public void setLevel(int level) {this.level = level;}
+	public Archetype getArchetype() {return archetype;}
+	public void setArchetype(Archetype archetype) {this.archetype = archetype;}
+	public int getAc() {return ac;}
+	public void setAc(int ac) {this.ac = ac;}
+	public int getHp() {return hp;}
+	public void setHp(int hp) {this.hp = hp;}
+	public Race getRace() {return race;}
+	public void setRace(Race race) {this.race = race;}
+	public String getNote() {return note;}
+	public void setNote(String note) {this.note = note;}
 
 	@Override
 	public String toString() {
