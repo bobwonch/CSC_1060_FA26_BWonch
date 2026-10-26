@@ -5,57 +5,32 @@ public class Dice {
 	
 	public static int roll4(int T)
 	{
-		int sum = 0;
-		for(int i = 0; i < T; i++)
-		{
-			sum += rand.nextInt(4)+ 1;
-		}
+		int sum = roll(T, 4);		
 		return sum;
 	}
 	public static int roll6(int T)
 	{
-		int sum = 0;
-		for(int i = 0; i < T; i++)
-		{
-			sum += rand.nextInt(6)+ 1;
-		}
+		int sum = roll(T, 6);
 		return sum;
 	}
 	public static int roll8(int T)
-
 	{
-		int sum = 0;
-		for(int i = 0; i < T; i++)
-		{
-			sum += rand.nextInt(8)+ 1;
-		}
+		int sum = roll(T, 8);
 		return sum;
 	}	
 	public static int roll10(int T)
 	{
-		int sum = 0;
-		for(int i = 0; i < T; i++)
-		{
-			sum += rand.nextInt(10)+ 1;
-		}
+		int sum = roll(T, 10);
 		return sum;
 	}
 	public static int roll12(int T)
 	{
-		int sum = 0;
-		for(int i = 0; i < T; i++)
-		{
-			sum += rand.nextInt(12)+ 1;
-		}
+		int sum = roll(T, 12);
 		return sum;
 	}	
 	public static int roll20(int T)
 	{
-		int sum = 0;
-		for(int i = 0; i < T; i++)
-		{
-			sum += rand.nextInt(20)+ 1;
-		}
+		int sum = roll(T, 20);
 		return sum;
 	}
 //variable

@@ -1,16 +1,34 @@
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class Sand {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		printThreeTimes("World");
-		System.out.println(add(2,3));
-		String word = "banana";
-		for(char letter : word.toCharArray())
-		{
-			System.out.println(letter);
-		}
+		Scanner in = new Scanner(System.in);
 		
+		int[] arr = new int[100];
+		
+		Arrays.fill(arr, -1);
+		
+		int num = 0;
+		int count = 0;
+		
+		System.out.println("Enter numbers, -1 to quit");
+		
+		while(num != -1)
+		{
+			num = in.nextInt();
+			if(num != -1)
+			{
+				arr[count] = num;
+				count++;
+			}
+		}
+		System.out.println("Your numbers reversed.");
+		for(int i = count-1; i >= 0; i--)
+		{
+			System.out.println(arr[i]);
+		}
 
 	}
 
