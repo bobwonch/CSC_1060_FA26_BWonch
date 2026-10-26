@@ -1,11 +1,18 @@
 import java.util.Scanner;
 
 public class Driver {
-
+	/**
+	 * 
+	 * @param args
+	 * @author bobwo
+	 * 
+	 *
+	 * This is a program to see if a number is a single digit.
+	 */
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 
-		/*
+		/**
 		 * works for all numeric types x == y ->x is equal to y x != y ->x is not equal
 		 * to y x > y ->x is greater than y x < Y ->x is less than y x <= y x >= y
 		 */
@@ -121,7 +128,12 @@ public class Driver {
 		System.out.println(isSingleDigit(num));
 		
 	}
-
+/**
+ * 
+ * @param num
+ * @return boolean single digit
+ * 
+ */
 	private static boolean isSingleDigit(int num) {
 //		if(num > -10 && num < 10)
 //			return true;
