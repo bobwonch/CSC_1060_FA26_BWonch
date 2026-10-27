@@ -3,14 +3,13 @@ import java.util.Iterator;
 public class Driver {
 
 	public static void main(String[] args) {
-		Card[] cards = new Card[52];
-		createDeck(cards);
-		//printDeck(cards);
-		Card target = new Card(3, 1);
-		int location = search(cards, target);
-		System.out.println(location);
-		location = binSearch(cards, target);
-		System.out.println(location);
+		Deck deck = new Deck();
+		deck.shuffle();
+		
+		Pile p1 = new Pile();
+		p1.addDeck(deck.subdeck(0, 25));
+		
+		p1.printPile();
 	}
 
 	
@@ -43,26 +42,6 @@ public class Driver {
 		return -1;
 	}
 
-	private static void printDeck(Card[] cards) {
-		for(Card card : cards)
-		{
-			System.out.println(card);
-		}
-		
-	}
-
-	private static void createDeck(Card[] cards) {
-		int index = 0;
-		for (int suit = 0; suit < 4; suit ++) 
-		{
-			for(int rank = 1; rank <= 13; rank++)
-			{
-				cards[index] = new Card(rank, suit);
-				index++;
-			}
-			
-		}
-		
-	}
+	
 
 }
