@@ -62,7 +62,7 @@ public class Attributes {
 		return "Strength: " + strength +  formatBonus(bonuses[0]) 
 				+ "\nDexterity: " +	dexterity + formatBonus(bonuses[1]) 
 				+ "\nConstitution: " + constitution + formatBonus(bonuses[2])  
-				+ "\nintelligence:"	+ intelligence +  formatBonus(bonuses[3])  
+				+ "\nIntelligence:"	+ intelligence +  formatBonus(bonuses[3])  
 				+ "\nWisdom: " + wisdom +  formatBonus(bonuses[4])  
 				+ "\nCharisma: " + charisma +  formatBonus(bonuses[5]) ;
 	}

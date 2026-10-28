@@ -42,10 +42,7 @@ public class Deck {
 		{
 			int rand = randomInt(i, cards.length-1);
 			swap(i, rand);
-		}
-		
-		
-		
+		}	
 	}
 	
 	private void swap(int i, int j)

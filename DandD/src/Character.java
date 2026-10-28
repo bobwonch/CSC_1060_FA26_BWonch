@@ -55,7 +55,7 @@ public class Character {
 	@Override
 	public String toString() {
 		return "~Character~\nName: " + name + "\nLevel: " + level + "\nArchetype: " + archetype + "\nAC: " + ac + "\nHP: " + hp
-				+ "\nRace: " + race + "\nNote:" + note + "\nStats:\n" + stats;
+				+ "\nRace: " + race + "\nNote:" + note + "\nStats:" + stats;
 	}
 	
 }
