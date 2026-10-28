@@ -15,6 +15,10 @@ public class Character {
 		this.archetype = archetype;
 		this.race = race;
 		this.note = note;
+		this.stats = StatRoller.rollStats(race);
+		
+		this.ac = 10 + this.stats.getBonus(1);
+		this.hp = archetype.getHitDie() + this.stats.getBonus(2);
 	}
 
 	public Character(String name, int level, Archetype archetype, int ac, int hp, Race race, String note,

@@ -17,9 +17,16 @@ public class Attributes {
 		this.intelligence = intelligence;
 		this.wisdom = wisdom;
 		this.charisma = charisma;
-		this.bonuses = bonuses;
+		addBonus();
 	}
-
+	private void addBonus() {
+		bonuses[0] = (int) Math.floor((strength - 10)/2.0);
+		bonuses[1] = (int) Math.floor((dexterity - 10)/2.0);
+		bonuses[2] = (int) Math.floor((constitution - 10)/2.0);
+		bonuses[3] = (int) Math.floor((intelligence - 10)/2.0);
+		bonuses[4] = (int) Math.floor((wisdom - 10)/2.0);
+		bonuses[5] = (int) Math.floor((charisma - 10)/2.0);	
+	}
 	public int getBonus(int i)
 	{
 		if(i < 0 || i > 5)
@@ -66,9 +73,4 @@ public class Attributes {
 				"\nWisdom:" + wisdom + formatBonus(bonuses[4]) +
 				"\nCharisma:" + charisma + formatBonus(bonuses[5]);
 	}
-
-	
-	
-	
-	
 }

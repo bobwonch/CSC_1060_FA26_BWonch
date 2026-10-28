@@ -1,5 +1,5 @@
 import java.util.Random;
-
+//combo class
 public class Attributes {
 	private int strength;
 	private int dexterity;
