@@ -1,3 +1,4 @@
+//combo
 public class Card {
 	//instance variables
 	private int rank;
@@ -35,6 +36,12 @@ public class Card {
 		{
 			return 1;
 		}
+		return 0;
+	}
+	public int compareRank(Card that)
+	{
+		if(this.rank > that.rank) return 1;
+		else if (this.rank < that.rank) return -1;
 		return 0;
 	}
 	
