@@ -17,19 +17,27 @@ public class Tetromino {
         this.type = type;
         this.color = COLORS[type];
         this.shape = initShape(type);
-        this.x = 5;
+        // Start closer to the center since the I-piece is now 4 spaces wide
+        this.x = (type == 0) ? 4 : 5; 
         this.y = 0;
     }
 
     private int[] initShape(int type) {
         switch (type) {
-            case 0: return new int[]{1, 1, 1, 1}; // I
-            case 1: return new int[]{1, 0, 0, 1, 1, 1, 0, 0, 0}; // J
-            case 2: return new int[]{0, 0, 1, 1, 1, 1, 0, 0, 0}; // L
-            case 3: return new int[]{1, 1, 1, 1}; // O
-            case 4: return new int[]{0, 1, 1, 1, 1, 0, 0, 0, 0}; // S
-            case 5: return new int[]{0, 1, 0, 1, 1, 1, 0, 0, 0}; // T
-            case 6: return new int[]{1, 1, 0, 0, 1, 1, 0, 0, 0}; // Z
+            // I-Piece (Type 0): 4x4 matrix (16 elements), flat row on the second row
+            case 0: return new int[]{
+                0, 0, 0, 0,
+                1, 1, 1, 1,
+                0, 0, 0, 0,
+                0, 0, 0, 0
+            }; 
+            case 1: return new int[]{1, 0, 0, 1, 1, 1, 0, 0, 0}; // J (3x3)
+            case 2: return new int[]{0, 0, 1, 1, 1, 1, 0, 0, 0}; // L (3x3)
+            // O-Piece (Type 3): 2x2 matrix (4 elements)
+            case 3: return new int[]{1, 1, 1, 1}; 
+            case 4: return new int[]{0, 1, 1, 1, 1, 0, 0, 0, 0}; // S (3x3)
+            case 5: return new int[]{0, 1, 0, 1, 1, 1, 0, 0, 0}; // T (3x3)
+            case 6: return new int[]{1, 1, 0, 0, 1, 1, 0, 0, 0}; // Z (3x3)
             default: return new int[]{1, 1, 1, 1};
         }
     }
@@ -38,13 +46,22 @@ public class Tetromino {
     public Color getColor() { return color; }
     public int getX() { return x; }
     public int getY() { return y; }
-    public int getMatrixSize() { return (shape.length == 4) ? 2 : 3; }
+    
+    // Corrected to handle 4x4 (16), 2x2 (4), and 3x3 (9) matrices properly
+    public int getMatrixSize() { 
+        if (shape.length == 16) return 4;
+        if (shape.length == 4) return 2;
+        return 3;
+    }
 
     public void moveLeft() { x--; }
     public void moveRight() { x++; }
     public void moveDown() { y++; }
 
     public int[] getRotatedShape() {
+        // The O-piece doesn't need to rotate
+        if (type == 3) return shape; 
+
         int[] rotated = new int[shape.length];
         int n = getMatrixSize();
         for (int r = 0; r < n; r++) {

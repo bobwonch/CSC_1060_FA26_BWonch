@@ -161,19 +161,29 @@ public class Tetris extends JPanel {
             int[] nextShape = nextPiece.getShape();
             int nextN = nextPiece.getMatrixSize();
             
-            // Dynamic centering variables to keep different block types looking neat in the box
-            int blockPaddingOffset = (nextN == 2) ? 25 : 12;
+            // Dynamic centering variables to keep all block types perfectly inside the 100x100 box
+            int blockPaddingX = 12;
+            int blockPaddingY = 25;
+            
+            if (nextN == 4) {       // I-Piece (4x4)
+                blockPaddingX = 0;
+                blockPaddingY = 12;
+            } else if (nextN == 2) { // O-Piece (2x2)
+                blockPaddingX = 25;
+                blockPaddingY = 25;
+            }
 
             for (int i = 0; i < nextShape.length; i++) {
                 if (nextShape[i] == 0) continue;
                 
                 // Map grid coordinates locally inside the 100x100 box boundary
-                int bx = (i % nextN) * BLOCK_SIZE + previewBoxX + blockPaddingOffset;
-                int by = (i / nextN) * BLOCK_SIZE + previewBoxY + 25;
+                int bx = (i % nextN) * BLOCK_SIZE + previewBoxX + blockPaddingX;
+                int by = (i / nextN) * BLOCK_SIZE + previewBoxY + blockPaddingY;
                 
                 g.fillRect(bx, by, BLOCK_SIZE - 1, BLOCK_SIZE - 1);
             }
         }
+
         if (isPaused) {
             g.setColor(new Color(0, 0, 0, 150)); // Semi-transparent dark background overlay
             g.fillRect(0, 0, getWidth(), getHeight());
