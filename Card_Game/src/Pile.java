@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Pile {
 	private ArrayList<Card> cards;
@@ -35,5 +36,14 @@ public class Pile {
 		{
 			System.out.println(card);
 		}
+	}
+	public void addPile(Pile mid) {
+		while(!mid.isEmpty())
+		{
+			this.add(mid.pop());
+		}
+	}
+	public void shuffle() {
+		Collections.shuffle(cards);	
 	}
 }
