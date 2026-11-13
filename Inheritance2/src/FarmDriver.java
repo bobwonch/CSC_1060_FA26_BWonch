@@ -19,7 +19,7 @@ public class FarmDriver {
 		for(Animal a : farm)
 		{
 			a.makeSound();
-			if(a instanceof Dog)
+			if(a instanceof Kitten)
 			{
 				System.out.println("WE had a kitten!!");
 			}

@@ -11,7 +11,6 @@ public class InPersonCourse extends Course {
 	public InPersonCourse(String courseNum, int numStudents, int maxStudents, int credits, String roomNum) {
 		super(courseNum, numStudents, maxStudents, credits);
 		this.roomNum = roomNum;
-		// TODO Auto-generated constructor stub
 	}
 
 	public String getRoomNum() {
