@@ -1,40 +1,67 @@
 import java.util.Random;
 
+/**
+ * Represents a standard deck of playing cards.
+ * Provides methods for shuffling, sorting, and searching cards.
+ */
 public class Deck {
-	static Random rand = new Random();
 
-	public Card[] cards;
+    /**
+     * Random number generator used for shuffling operations.
+     */
+    static Random rand = new Random();
 
-	public Deck(int n) {
-		this.cards = new Card[n];
-	}
+    /**
+     * The array of cards contained in this deck.
+     */
+    public Card[] cards;
 
-	public Deck() {
-		this.cards = new Card[52];
-		int index = 0;
-		for (int suit = 0; suit < 4; suit++) {
-			for (int rank = 1; rank <= 13; rank++) {
-				cards[index] = new Card(rank, suit);
-				index++;
-			}
-		}
-	}
+    /**
+     * Constructs an empty deck capable of holding a specific number of cards.
+     *
+     * @param n the number of cards the deck should hold
+     */
+    public Deck(int n) {
+        this.cards = new Card[n];
+    }
 
-	public Deck subdeck(int low, int high) {
-		Deck sub = new Deck(high - low + 1);
-		for (int i = 0; i < sub.cards.length; i++) {
-			sub.cards[i] = this.cards[low + i];
-		}
-		return sub;
-	}
+    /**
+     * Constructs a standard 52-card deck initialized with 13 ranks of 4 suits.
+     */
+    public Deck() {
+        this.cards = new Card[52];
+        int index = 0;
+        for (int suit = 0; suit < 4; suit++) {
+            for (int rank = 1; rank <= 13; rank++) {
+                cards[index] = new Card(rank, suit);
+                index++;
+            }
+        }
+    }
 
-	public void insertionSort() {
+    /**
+     * Creates and returns a new subdeck containing a slice of cards from this deck.
+     *
+     * @param low  the starting index of the subdeck (inclusive)
+     * @param high the ending index of the subdeck (inclusive)
+     * @return a new Deck instance containing the specified range of cards
+     */
+    public Deck subdeck(int low, int high) {
+        Deck sub = new Deck(high - low + 1);
+        for (int i = 0; i < sub.cards.length; i++) {
+            sub.cards[i] = this.cards[low + i];
+        }
+        return sub;
+    }
+
+    /**
+     * Sorts the deck using the Insertion Sort algorithm based on Card comparison.
+     */
+    public void insertionSort() {
         int n = cards.length;
         for (int i = 1; i < n; ++i) {
             Card key = cards[i];
             int j = i - 1;
-
-            // Move elements of arr[0..i-1] that are greater than key ahead
             while (j >= 0 && cards[j].compareTo(key) > 0) {
                 cards[j + 1] = cards[j];
                 j = j - 1;
@@ -42,8 +69,11 @@ public class Deck {
             cards[j + 1] = key;
         }
     }
-	
-	public void bubbleSort(){
+
+    /**
+     * Sorts the deck using the Bubble Sort algorithm based on Card comparison.
+     */
+    public void bubbleSort(){
         int n = cards.length;
         int i, j;
         boolean swapped;
@@ -51,78 +81,104 @@ public class Deck {
             swapped = false;
             for (j = 0; j < n - i - 1; j++) {
                 if (cards[j].compareTo(cards[j + 1]) > 0) {
-                    
-                    // Swap arr[j] and arr[j+1]
                     swap(j, j+1);
                     swapped = true;
                 }
             }
-
-            // If no two elements were
-            // swapped by inner loop, then break
-            if (swapped == false)break;
+            if (swapped == false) break;
         }
     }
-	
-	public void shuffle(int j) {
-		// for each index 0 - 51
-		// choose a random number between i to the length
-		// swap those cards in the array
-		while (j > 0) {
-			for (int i = 0; i < cards.length; i++) {
-				int rand = randomInt(i, cards.length);
-				swap(i, rand);
-			}
-			j--;
-		}
 
-	}
+    /**
+     * Shuffles the deck a specified number of times using the Fisher-Yates algorithm.
+     *
+     * @param j the number of complete shuffle passes to perform
+     */
+    public void shuffle(int j) {
+        while (j > 0) {
+            for (int i = 0; i < cards.length; i++) {
+                int rand = randomInt(i, cards.length);
+                swap(i, rand);
+            }
+            j--;
+        }
+    }
 
-	private void swap(int i, int rand) {
-		Card temp = cards[i];
-		cards[i] = cards[rand];
-		cards[rand] = temp;
-	}
+    /**
+     * Swaps two cards in the deck array.
+     *
+     * @param i    the index of the first card
+     * @param rand the index of the second card
+     */
+    private void swap(int i, int rand) {
+        Card temp = cards[i];
+        cards[i] = cards[rand];
+        cards[rand] = temp;
+    }
 
-	private int randomInt(int low, int high) {
+    /**
+     * Generates a random integer within a specified range.
+     *
+     * @param low  the lower bound (inclusive)
+     * @param high the upper bound (exclusive)
+     * @return a random integer between low and high - 1
+     */
+    private int randomInt(int low, int high) {
+        return rand.nextInt(high - low) + low;
+    }
 
-		return rand.nextInt(high - low) + low;
-	}
+    /**
+     * Gets the array of cards in this deck.
+     *
+     * @return an array of Card objects
+     */
+    public Card[] getCards() {
+        return cards;
+    }
 
-	public Card[] getCards() {
-		return cards;
-	}
+    /**
+     * Searches for a target card using the Binary Search algorithm. 
+     * Assumes the deck is already sorted.
+     *
+     * @param target the Card object to search for
+     * @return the index of the target card if found; -1 otherwise
+     */
+    public int binSearch(Card target) {
+        int low = 0;
+        int high = cards.length - 1;
+        int mid = 0;
+        while (low <= high) {
+            mid = (low + high) / 2;
+            int comp = cards[mid].compareTo(target);
+            if (comp == 0) return mid;
+            else if (comp < 0) low = mid + 1;
+            else high = mid - 1;
+        }
+        return -1;
+    }
 
-	public int binSearch(Card target) {
-		int low = 0;
-		int high = cards.length - 1;
-		int mid = 0;
-		while (low <= high) {
-			mid = (low + high) / 2;
-			int comp = cards[mid].compareTo(target);
-			if (comp == 0)
-				return mid;
-			else if (comp < 0)
-				low = mid + 1;
-			else
-				high = mid - 1;
-		}
-		return -1;
-	}
+    /**
+     * Searches for a target card using the Linear Search algorithm.
+     * Works on both sorted and unsorted decks.
+     *
+     * @param target the Card object to search for
+     * @return the index of the target card if found; -1 otherwise
+     */
+    public int search(Card target) {
+        for (int i = 0; i < cards.length; i++) {
+            if (cards[i].equals(target)) {
+                return i;
+            }
+        }
+        return -1;
+    }
 
-	public int search(Card target) {
-		for (int i = 0; i < cards.length; i++) {
-			if (cards[i].equals(target)) {
-				return i;
-			}
-		}
-		return -1;
-	}
-
-	public void printDeck() {
-		for (Card card : cards) {
-			System.out.println(card);
-		}
-
-	}
+    /**
+     * Prints the entire deck to the standard output, one card per line.
+     */
+    public void printDeck() {
+        for (Card card : cards) {
+            System.out.println(card);
+        }
+    }
 }
