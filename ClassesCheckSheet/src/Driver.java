@@ -49,7 +49,7 @@ public class Driver {
 			System.out.println("Is there another course to enter?");
 			again = input.next();
 		}
-		
+		input.close();
 		for(Course crs : courseList)
 		{
 			getPrint(crs);

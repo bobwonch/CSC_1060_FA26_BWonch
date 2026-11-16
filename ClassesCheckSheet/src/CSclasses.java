@@ -6,7 +6,8 @@ public class CSclasses {
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
-		List<Course> courseList = new ArrayList<>();
+		String filename = "courses.txt";		
+		ArrayList<Course> courseList = FileHandler.readCourses(filename);
 		
 		char ans = 'y';
 		
@@ -49,6 +50,10 @@ public class CSclasses {
 			System.out.println("Is there another course to enter?");
 			ans = input.next().charAt(0);
 		} // End while
+		
+		FileHandler.writeCourses(courseList, filename);
+		
+		
 		for (Course crse : courseList) {
 			getPrint(crse);
 			System.out.println("**************************");
